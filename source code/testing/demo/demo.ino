@@ -5,7 +5,6 @@
 #include<Timer.h>
 Timer tDisplay(Timer::MILLIS);
 Timer tInterrupt(Timer::MILLIS);
-Timer tExecute(Timer::MILLIS);
 //===================================================================Lcd
 #include <U8g2lib.h>
 U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE, /* clock=*/ SCL, /* data=*/ SDA);
@@ -43,7 +42,7 @@ SoftwareSerial softSerial(SOFTSERIAL_RX, SOFTSERIAL_TX);
 const char title[] PROGMEM = {"Arduino Trainer D1"};
 const char label1[] PROGMEM = {"Encoder     : "};
 const char label2[] PROGMEM = {"Tact Switch : "};
-const char label3[] PROGMEM = {"Potentio    : "};
+const char label3[] PROGMEM = {"Potentio/LDR: "};
 const char label4[] PROGMEM = {"Temperature : "};
 const char label5[] PROGMEM = {"Run Time    : "};
 
@@ -574,9 +573,9 @@ void uiMenu() {
       break;
     case 2:
       result = u8g2.userInterfaceMessage(
-                 "v0.1",
-                 "20210507",
+                 "v0.2 (20210710)",
                  "",
+                 "09176088771",
                  "rhalfcaacbay@gmail.com");
       break;
     case 3:
@@ -602,31 +601,15 @@ void uiMenu() {
 }
 //===================================================================Functions Display
 void cbDisplay() {
-  switch (stateDisplay) {
-    case 0 :
-      uiMain();
-      break;
-    case 1:
-      uiMenu();
-      break;
-  }
+  uiMain();
 }
 //===================================================================Functions Interrupt
 void cbInterrupt() {
-
-  inputs.encoder = encoder.read();
-
-  inputs.tactA = digitalRead(ENCODER_DT);
-  inputs.tactB = digitalRead(ENCODER_CLK);
-
-  inputs.pot = analogRead(POTENTIOMETER_PIN);
-  inputs.temp = analogRead(LM35_PIN) * (5000.0 / 1024.0) / 10 ;
-  inputs.runTime =  Timer::getSeconds();
-
-
-  switch (u8g2.getMenuEvent()) {
+  uint8_t key = u8g2.getMenuEvent();
+  Serial.println(key);
+  switch (key) {
     case U8X8_MSG_GPIO_MENU_SELECT:
-      stateDisplay = 1;
+      uiMenu();
       break;
     case U8X8_MSG_GPIO_MENU_NEXT:
       break;
@@ -639,11 +622,17 @@ void cbInterrupt() {
     case U8X8_MSG_GPIO_MENU_DOWN:
       break;
   }
-}
-//===================================================================Functions Execute
-void cbExecute() {
 
+  inputs.encoder = encoder.read();
+
+  inputs.tactA = !digitalRead(ENCODER_DT);
+  inputs.tactB = !digitalRead(ENCODER_CLK);
+
+  inputs.pot = analogRead(POTENTIOMETER_PIN);
+  inputs.temp = analogRead(LM35_PIN) * (5000.0 / 1024.0) / 10 ;
+  inputs.runTime =  Timer::getSeconds();
 }
+
 
 String sendCommand(String command) {
   softSerial.print("AT+" + command + "\r\n");
@@ -686,14 +675,11 @@ void setup(void) {
   u8g2.setFont(u8g2_font_profont11_tf);
   u8g2.enableUTF8Print();
 
-  tDisplay.begin(Timer::FOREVER, 200, cbDisplay);
+  tDisplay.begin(Timer::FOREVER, 250, cbDisplay);
   tDisplay.start();
 
-  tInterrupt.begin(Timer::FOREVER, 10, cbInterrupt);
+  tInterrupt.begin(Timer::FOREVER, 1, cbInterrupt);
   tInterrupt.start();
-
-  tExecute.begin(Timer::FOREVER, 100, cbExecute);
-  tExecute.start();
 
   lc.shutdown(MAX7219_ADDRESS, false);
   lc.setIntensity(MAX7219_ADDRESS, 4);
@@ -703,5 +689,4 @@ void setup(void) {
 void loop(void) {
   tInterrupt.run();
   tDisplay.run();
-  tExecute.run();
 }
