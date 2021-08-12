@@ -1,0 +1,34 @@
+#######################################
+# Syntax Coloring Map For Timer Class
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Timer	        KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+set             KEYWORD2
+start           KEYWORD2
+stop            KEYWORD2
+run             KEYWORD2
+pause           KEYWORD2
+
+getMicros       KEYWORD2
+getMillis       KEYWORD2
+getSeconds      KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+MICROS	        LITERAL1
+MILLIS	        LITERAL1
+SECONDS	        LITERAL1
+
+ONCE	        LITERAL1
+TWICE           LITERAL1
+NEVER	        LITERAL1
+FOREVER	        LITERAL1

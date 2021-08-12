@@ -1,0 +1,24 @@
+#######################################
+# Syntax Coloring Map For Terminal Class
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Buzzer	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+on     KEYWORD2
+off     KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+#
+#ONCE	LITERAL1
+#TWICE   LITERAL1
+#NEVER	LITERAL1
+#FOREVER	LITERAL1

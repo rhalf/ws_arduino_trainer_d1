@@ -1,0 +1,32 @@
+#######################################
+# Syntax Coloring Map For WatchDog Class
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+WatchDog	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+disable           KEYWORD2
+enable            KEYWORD2
+reset             KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+
+ M015    LITERAL1
+ M030    LITERAL1
+ M060    LITERAL1
+ M120    LITERAL1
+ M250    LITERAL1
+ M500    LITERAL1
+ S001    LITERAL1
+ S002    LITERAL1
+ S004    LITERAL1
+ S008    LITERAL1
+#######################################
