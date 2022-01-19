@@ -7,15 +7,17 @@ void setup() {
   gsm.begin(9600);
   gsm.print("AT\r\n");
   delay(100);
-  gsm.print("ATD+ +639176088771\r\n");
-  delay(10000);
+  gsm.print("AT+CSQ\r\n");
+  delay(100);
+  gsm.print("ATD+639705786311;\r\n");
+  delay(15000);
   gsm.print("ATH\r\n");
 }
 void loop() {
   // put your main code here, to run repeatedly:
-  if (gsm.available()) 
+  if (gsm.available())
     Serial.write(gsm.read());
-  if (Serial.available()) 
+  if (Serial.available())
     gsm.write(Serial.read());
 
 }
