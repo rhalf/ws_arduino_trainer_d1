@@ -9,7 +9,7 @@ void setup() {
   Serial.begin(9600);
 }
 void loop() {
-  uint8_t newP = encoder.read();
+  int8_t newP = encoder.read();
   if (newP != oldP) {
     oldP = newP;
     Serial.println(newP);

@@ -14,13 +14,10 @@ void toggle2() {
   digitalWrite(LED2, !digitalRead(LED2));
   delay(250);
 }
-void setup() {
-  // put your setup code here, to run once:              
+void setup() {              
   pinMode(LED1, OUTPUT);
   pinMode(LED2, OUTPUT);
   attachInterrupt(INTERRUPT0, toggle1, RISING);
   attachInterrupt(INTERRUPT1, toggle2, FALLING);
 }
-void loop() {
-  // put your main code here, to run repeatedly:                  
-}
+void loop() {}

@@ -1,4 +1,4 @@
-#include "pitches.h"
+#include"pitches.h"
 uint8_t const BUZZER = A0;
 
 uint16_t chords[] = {
@@ -23,11 +23,9 @@ uint8_t beats[] = {
 };
 
 void setup() {
-  // put your setup code here, to run once:
   pinMode (BUZZER, OUTPUT);
 }
 void loop() {
-  // put your main code here, to run repeatedly:
   for (uint8_t i = 0; i < 56 ; i++) {
     // note duration quarter note = 1000 / 4,
     // eighth note = 1000/8, etc.

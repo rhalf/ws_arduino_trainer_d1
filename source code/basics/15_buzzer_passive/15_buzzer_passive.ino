@@ -7,12 +7,9 @@
 */
 uint8_t const BUZZER = A0;
 
-void setup() {
-  // put your setup code here, to run once:
-}
+void setup() {}
 
 void loop() {
-  // put your main code here, to run repeatedly:
   tone(BUZZER, 2048, 100);
   delay(100);
   noTone(BUZZER);
