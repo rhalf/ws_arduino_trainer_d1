@@ -9,7 +9,7 @@ void setup() {
   analogWrite(MOTOR_B2, 0);
 }
 void loop() {
-  uint8_t speed = 128; //50% duty cycle
+  uint8_t speed = 255;  //50% duty cycle
   uint8_t selector = counter % 4;
   if (selector == 0) {
     analogWrite(MOTOR_A1, speed);
@@ -35,6 +35,6 @@ void loop() {
     analogWrite(MOTOR_B1, 0);
     analogWrite(MOTOR_B2, speed);
   }
-  delay(3000);
+  delay(5000);
   counter++;
 }
