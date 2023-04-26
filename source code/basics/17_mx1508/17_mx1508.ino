@@ -1,40 +1,24 @@
-uint8_t MOTOR_A1 = 5, MOTOR_A2 = 6, MOTOR_B1 = 9, MOTOR_B2 = 10, SPEED = 50;
+uint8_t MOTOR[] = { 5, 6, 9, 10 };
+uint8_t SPEED = 128;
 uint8_t counter = 0;
+
+void drive(uint8_t a1, uint8_t a2, uint8_t b1, uint8_t b2) {
+  analogWrite(MOTOR[0], a1);
+  analogWrite(MOTOR[1], a2);
+  analogWrite(MOTOR[2], b1);
+  analogWrite(MOTOR[3], b2);
+}
 void setup() {
-  pinMode(MOTOR_A2, OUTPUT);
-  pinMode(MOTOR_B2, OUTPUT);
-  analogWrite(MOTOR_A1, 0);
-  analogWrite(MOTOR_A2, 0);
-  analogWrite(MOTOR_B1, 0);
-  analogWrite(MOTOR_B2, 0);
 }
 void loop() {
-  uint8_t speed = 255;  //50% duty cycle
-  uint8_t selector = counter % 4;
-  if (selector == 0) {
-    analogWrite(MOTOR_A1, speed);
-    analogWrite(MOTOR_A2, 0);
-    analogWrite(MOTOR_B1, 0);
-    analogWrite(MOTOR_B2, 0);
-  }
-  if (selector == 1) {
-    analogWrite(MOTOR_A1, 0);
-    analogWrite(MOTOR_A2, speed);
-    analogWrite(MOTOR_B1, 0);
-    analogWrite(MOTOR_B2, 0);
-  }
-  if (selector == 2) {
-    analogWrite(MOTOR_A1, 0);
-    analogWrite(MOTOR_A2, 0);
-    analogWrite(MOTOR_B1, speed);
-    analogWrite(MOTOR_B2, 0);
-  }
-  if (selector == 3) {
-    analogWrite(MOTOR_A1, 0);
-    analogWrite(MOTOR_A2, 0);
-    analogWrite(MOTOR_B1, 0);
-    analogWrite(MOTOR_B2, speed);
-  }
-  delay(5000);
-  counter++;
+  drive(SPEED, 0, 0, 0);
+  delay(3000);
+  drive(0, SPEED, 0, 0);
+  delay(3000);
+  drive(0, 0, SPEED, 0);
+  delay(3000);
+  drive(0, 0, 0, SPEED);
+  delay(3000);
+  drive(0, 0, 0, 0);
+  delay(3000);
 }

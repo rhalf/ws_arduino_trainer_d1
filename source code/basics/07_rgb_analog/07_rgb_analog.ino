@@ -1,34 +1,18 @@
-uint8_t const RGB[] = {9, 10, 11};
+uint8_t const RGB[] = { 10, 11, 9 };
+
+void rgb(uint8_t r, uint8_t g, uint8_t b) {
+  analogWrite(RGB[0], r);
+  analogWrite(RGB[1], g);
+  analogWrite(RGB[2], b);
+}
 
 void setup() {}
 
 void loop() {
-  for (uint8_t i = 0; i < 255; i++) {
-    analogWrite(RGB[0], i);
-    delay(20);
-  }
-  analogWrite(RGB[0], 0);
-
-  for (uint8_t i = 0; i < 255; i++) {
-    analogWrite(RGB[1], i);
-    delay(20);
-  }
-  analogWrite(RGB[1], 0);
-
-  for (uint8_t i = 0; i < 255; i++) {
-    analogWrite(RGB[2], i);
-    delay(20);
-  }
-  analogWrite(RGB[2], 0);
-
-  for (uint8_t i = 0; i < 255; i++) {
-    analogWrite(RGB[0], i);
-    analogWrite(RGB[1], i);
-    analogWrite(RGB[2], i);
-    delay(20);
-  }
-  
-  analogWrite(RGB[2], 0);
-  analogWrite(RGB[1], 0);
-  analogWrite(RGB[2], 0);
+  rgb(0xFF, 0x00, 0x00); //Red
+  delay(7000);
+  rgb(0x00, 0xFF, 0x00); //Green
+  delay(4000);
+  rgb(0xD0, 0x20, 0x00); //Amber
+  delay(3000);
 }

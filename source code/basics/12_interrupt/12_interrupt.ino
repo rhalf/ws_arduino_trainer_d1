@@ -17,7 +17,8 @@ void toggle2() {
 void setup() {              
   pinMode(LED1, OUTPUT);
   pinMode(LED2, OUTPUT);
+
   attachInterrupt(INTERRUPT0, toggle1, RISING);
-  attachInterrupt(INTERRUPT1, toggle2, FALLING);
+  attachInterrupt(INTERRUPT1, toggle2,  );
 }
 void loop() {}

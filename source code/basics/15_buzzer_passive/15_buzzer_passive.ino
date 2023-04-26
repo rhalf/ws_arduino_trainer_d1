@@ -1,10 +1,3 @@
-/*  
-  on v01:
-    -turn Off active switch
-    -turn On passive switch
-  note:
-    -this code would run on both passive and active buzzer
-*/
 uint8_t const BUZZER = A0;
 
 void setup() {}

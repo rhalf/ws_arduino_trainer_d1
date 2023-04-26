@@ -9,7 +9,7 @@ void setup() {
   delay(100);
   gsm.print("AT+CMGF=1\r\n");
   delay(100);
-  gsm.print("AT+CMGS=\"+639705786311\"\r\n");
+  gsm.print("AT+CMGS=\"+639176088771\"\r\n");
   delay(100);
   gsm.print("Hello DMMMSU Merry Christmas!\r\n");
   delay(100);
