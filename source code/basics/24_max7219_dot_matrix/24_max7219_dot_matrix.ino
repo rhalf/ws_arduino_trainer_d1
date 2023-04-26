@@ -7,12 +7,17 @@ void setup() {
   lc.setIntensity(ADDRESS, 4);
   lc.clearDisplay(ADDRESS);
 }
-void writeArduinoOnMatrix() {
+
+void loop() {
   uint8_t a[8] = {
-    B00000000, B00100010, 
-    B00100010, B00111110, 
-    B00100010, B00100010, 
-    B00011100, B00000000
+    B00000000,
+    B00100010,
+    B00100010,
+    B00111110,
+    B00100010,
+    B00100010,
+    B00011100,
+    B00000000
   };
   // uint8_t r[8] = {B00000000, B00100010, B00100010, B00011110, B00100010, B00100010, B00011110, B00000000};
   // uint8_t d[8] = {B00000000, B00011110, B00100010, B00100010, B00100010, B00100010, B00011110, B00000000};
@@ -22,20 +27,8 @@ void writeArduinoOnMatrix() {
   // uint8_t o[8] = {B00000000, B00011100, B00100010, B00100010, B00100010, B00100010, B00011100, B00000000};
 
   /* now display them one by one with a small delay */
-  for (uint8_t i = 0; i < 8; i++) lc.setRow(ADDRESS, i, a[i]);
+  for (uint8_t i = 0; i < 8; i++)
+    lc.setRow(ADDRESS, i, a[i]);
   delay(dura);
   lc.clearDisplay(0);
-}
-// void single() {
-//   for (uint8_t row = 0; row < 8; row++) {
-//     for (uint8_t col = 0; col < 8; col++) {
-//       delay(dura / 8);
-//       lc.setLed(ADDRESS, row, col, true);
-//       delay(dura / 8);
-//     }
-//   }
-// }
-void loop() {
-  writeArduinoOnMatrix();
-// single();
 }

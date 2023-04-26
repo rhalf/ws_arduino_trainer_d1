@@ -1,6 +1,5 @@
 #include<SoftwareSerial.h>
-uint8_t RX = 8, TX = 7;
-SoftwareSerial gsm(RX, TX);
+SoftwareSerial gsm(8, 7); //RX = 8, TX = 7;
 void setup() {
   Serial.begin(9600);
   gsm.begin(9600);

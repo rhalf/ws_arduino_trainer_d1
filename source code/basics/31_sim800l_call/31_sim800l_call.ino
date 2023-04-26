@@ -1,23 +1,24 @@
-#include<SoftwareSerial.h>
-uint8_t RX = 8, TX = 7;
-SoftwareSerial gsm(RX, TX);
+#include <SoftwareSerial.h>
+SoftwareSerial gsm(8, 7); //RX = 8, TX = 7;
+
+void command(String command) {
+  delay(100);
+  gsm.print(command + "\r\n");
+}
+
 void setup() {
   Serial.begin(9600);
   gsm.begin(9600);
-  gsm.print("AT\r\n");
-  delay(100);
-  gsm.print("AT+CSQ\r\n");
-  delay(100);
-  gsm.print("ATD+639705786311;\r\n");
+
+  command("AT");
+  command("AT+CSQ");
+  command("ATD+639176088771;");  //make a call
   delay(15000);
-  gsm.print("ATH\r\n");
-  //delay(100)//
-  //gsm.print("ATA\r\n"); answer call
-  //delay(10000);
-  //gsm.print("ATH\r\n"); drop call
+  command("ATH");  //drop the call
 }
+
 void loop() {
-  if (gsm.available()) 
+  if (gsm.available())
     Serial.write(gsm.read());
   if (Serial.available())
     gsm.write(Serial.read());

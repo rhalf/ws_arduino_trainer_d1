@@ -11,8 +11,8 @@ void loop() {
   u8g2.firstPage();
   do {
     u8g2.setCursor(0, 10);
-    u8g2.print("Lorem ipsum dolor sit");
+    u8g2.print("Hello world!");
     u8g2.setCursor(0, 60);
-    u8g2.print("Lorem ipsum");
+    u8g2.print("Hello DMMMSU!");
   } while ( u8g2.nextPage() );
 }
